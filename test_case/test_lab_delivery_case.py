@@ -5,6 +5,7 @@ from Bindo.page_obj.loginPage import login
 from Bindo.page_obj.labPage import LabPage
 from Bindo.page_obj.menuPage import PhatThai
 from Bindo.models import myunit
+from Bindo.models.function import insert_img
 
 
 class LabDelivery(myunit.Mytest):
@@ -24,6 +25,7 @@ class LabDelivery(myunit.Mytest):
         try:
             self.assertEqual(pt.order_complete_clues(),u'订单提交成功')
             sleep(10)
+            insert_img(self.driver,"test_lab_delivery.jpg")
             print u'your order scuessful'
         except:
             print u'your order failed'

@@ -5,6 +5,7 @@ sys.path.append("./models")
 sys.path.append("./page_obj")
 from Bindo.models import myunit,function
 from Bindo.page_obj.loginPage import login
+from Bindo.models.function import insert_img
 
 
 class LoginPageTest(myunit.Mytest):
@@ -22,10 +23,12 @@ class LoginPageTest(myunit.Mytest):
         try:
             self.assertEqual(self.driver.title,u"百味村")
             sleep(10)
+            insert_img(self.driver, "test_login_right.jpg")
             print u'登录成功'
         except:
             print u"未能成功登录"
 
+    @unittest.skip
     def test_wrong_password(self):
         '''账号正确，密码不匹配'''
         char=random.choice('qwertyuiopasdfghjklmnbvcxz')
@@ -40,6 +43,7 @@ class LoginPageTest(myunit.Mytest):
         except:
             print u'assertEqual is failed'
 
+    @unittest.skip
     def test_wrong_account(self):
         '''账号错误，密码正确'''
         account=random.randint(1,500)
@@ -53,6 +57,7 @@ class LoginPageTest(myunit.Mytest):
         except:
             print u'assertEqual is failed'
 
+    @unittest.skip
     def test_forget_pwd(self):
         '''忘记密码'''
         po = login(self.driver)
@@ -65,6 +70,7 @@ class LoginPageTest(myunit.Mytest):
         except:
             print u'assertEqual is failed'
 
+    @unittest.skip
     def test_register_rigthnow(self):
         '''马上注册'''
         po = login(self.driver)
@@ -75,6 +81,7 @@ class LoginPageTest(myunit.Mytest):
         try:
             self.assertEqual(po.register_now_hint(),u'注册成功')
             sleep(10)
+            insert_img(self.driver, "test_register_rigthnow.jpg")
             print u'assertEqual is scuesss'
         except:
             print u'assertEqual is failed'
